@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "samples",
+  "compatibility_date": "2026-09-01",
+  // Static site built into ./public by `npm run build`. No Worker code: Cloudflare serves the files.
+  "assets": {
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}

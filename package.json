@@ -1,0 +1,14 @@
+{
+  "name": "samples",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Rock and Mineral Specimens: 3D samples for the NYS Earth Science Regents",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
