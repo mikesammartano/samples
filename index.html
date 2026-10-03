@@ -1073,7 +1073,7 @@ body.present.flash .pmeta{min-width:5.5rem}
 #fcCard{pointer-events:none}
 #fcCard b{max-width:22rem; text-wrap:balance}
 #fcCard span{max-width:22rem}
-.pbrand{pointer-events:none}
+.pbrand{pointer-events:none; padding:.375rem}
 .pinfo__hint{display:flex; align-items:center; justify-content:center; gap:.375rem; white-space:nowrap}
 .pinfo .readout{white-space:nowrap; flex:1 0 auto}
 
@@ -1134,6 +1134,20 @@ select.input{appearance:none; -webkit-appearance:none; padding-right:2rem; backg
 }
 @container bar (max-width: 800px){ .stagebar .brand{display:none} }
 @container bar (max-width: 1100px){ .stagebar .brand .brand__word{display:none} }
+
+/* present: the info card carries every property and the tools */
+.pinfo{width:min(26rem,calc(100vw - 2.5rem)); max-height:calc(100dvh - 7.5rem); background:var(--stage-glass); -webkit-backdrop-filter:blur(18px); backdrop-filter:blur(18px)}
+.pinfo__body{flex:1 1 auto; min-height:0; overflow:auto; padding:.875rem; border-top:1px solid var(--stage-edge); display:flex; flex-direction:column; gap:.875rem; scrollbar-width:thin; color:var(--ink)}
+.pinfo__body .dinfo__desc{font-size:.875rem}
+.pinfo__body .prop{grid-template-columns:6.5rem minmax(0,1fr); gap:.75rem; padding:.5rem 0}
+.pinfo__body .prop__v{font-size:.8125rem}
+.pinfo__body .qrbox.is-open{padding:.625rem}
+.pinfo__body .qrbox img{width:6rem; height:6rem}
+.pinfo__tools{display:flex; flex-wrap:wrap; gap:.375rem; padding:.625rem .75rem; border-top:1px solid var(--stage-edge)}
+.pinfo__tools .btn[aria-pressed="true"]{background:var(--input); border-color:transparent; color:var(--on-accent)}
+body.quiz.present #pName,body.quiz.present #pinfo .prop--composition .prop__v,body.quiz.present #pinfo .prop--distinguishing .prop__v{filter:blur(8px)}
+body.present.idle .pinfo__hint{opacity:1}
+@media (max-width: 48rem){ .pinfo{top:4.25rem; right:.75rem; width:calc(100vw - 1.5rem); max-height:calc(100dvh - 11rem)} .pinfo-btn{top:.75rem; right:.75rem} }
 </style>
 </head>
 <body>
@@ -1144,9 +1158,22 @@ select.input{appearance:none; -webkit-appearance:none; padding-right:2rem; backg
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<div class="pbrand present-only"><span class="brand__mark"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path class="ring r1" pathLength="60" d="M128 28 194 86 166 228 90 228 62 86Z"/><path class="ring r2" pathLength="60" d="M62 86 128 114 194 86M128 114 128 228"/></svg></span><span class="brand__word">Rock &amp; Mineral</span></div>
-<button class="pinfo-btn present-only" id="presentInfo" type="button" aria-expanded="true" aria-controls="pinfo" data-tip="Specimen properties"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/></svg></button>
-<div class="pinfo present-only is-open" id="pinfo" aria-label="Specimen properties"><div class="readouts" id="pinfoReads"></div><div class="pane__hint pinfo__hint">Drag to turn · scroll to zoom · <kbd>←</kbd><kbd>→</kbd> to change</div></div>
+<div class="pbrand present-only"><span class="brand__mark"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path class="ring r1" pathLength="60" d="M128 28 194 86 166 228 90 228 62 86Z"/><path class="ring r2" pathLength="60" d="M62 86 128 114 194 86M128 114 128 228"/></svg></span></div>
+<button class="pinfo-btn present-only" id="presentInfo" type="button" aria-expanded="true" aria-controls="pinfo" data-tip="Details and tools (I)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z"/></svg></button>
+<div class="pinfo present-only is-open" id="pinfo" aria-label="Specimen details and tools">
+  <div class="readouts" id="pinfoReads"></div>
+  <div class="pinfo__body" id="pinfoBody"></div>
+  <div class="pinfo__tools" id="pinfoTools" role="group" aria-label="Tools">
+    <button class="btn btn--ghost btn--sm" type="button" data-act="listen"><svg aria-hidden="true" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M40 104h32l56-48v144l-56-48H40zM168 96a44 44 0 0 1 0 64M196 72a80 80 0 0 1 0 112"/></svg>Listen</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="share"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M176,160a39.89,39.89,0,0,0-28.62,12.09l-46.1-29.63a39.8,39.8,0,0,0,0-28.92l46.1-29.63a40,40,0,1,0-8.66-13.45l-46.1,29.63a40,40,0,1,0,0,55.82l46.1,29.63A40,40,0,1,0,176,160Zm0-128a24,24,0,1,1-24,24A24,24,0,0,1,176,32ZM64,152a24,24,0,1,1,24-24A24,24,0,0,1,64,152Zm112,72a24,24,0,1,1,24-24A24,24,0,0,1,176,224Z"/></svg>Share</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="qr"><svg aria-hidden="true" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M40 40h64v64H40zM152 40h64v64h-64zM40 152h64v64H40zM152 152h24v24h-24zM192 192h24v24h-24zM152 200v16"/></svg>QR</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="print"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z"/></svg>Print</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="rotate" aria-pressed="true"><svg aria-hidden="true" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M216 128a88 88 0 1 1-26-62l26 26M216 48v44h-44"/></svg>Spin</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="pins" aria-pressed="true"><svg aria-hidden="true" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M128 232s-72-64-72-120a72 72 0 0 1 144 0c0 56-72 120-72 120ZM128 136a24 24 0 1 0 0-48 24 24 0 0 0 0 48Z"/></svg>Pins</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-act="quiz" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M24 128c24-44 56-64 104-64s80 20 104 64c-24 44-56 64-104 64s-80-20-104-64ZM128 164a36 36 0 1 0 0-72 36 36 0 0 0 0 72Z"/></svg>Hide name</button>
+  </div>
+  <div class="pane__hint pinfo__hint">Drag to turn · scroll to zoom · <kbd>←</kbd><kbd>→</kbd> to change</div>
+</div>
 <div class="placepill present-only flash-only" id="fcCard"><b id="fcTitle"></b><span id="fcSub"></span></div>
 
 <div class="work">
@@ -1154,7 +1181,7 @@ select.input{appearance:none; -webkit-appearance:none; padding-right:2rem; backg
     <h1 class="sr-only">Rock and Mineral Specimens: 3D models for the NYS Earth Science Regents</h1>
     <section class="stagewrap" aria-label="Specimens">
       <div class="stagebar"><div class="stagebar__row">
-        <div class="brand normal-only"><span class="brand__mark"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path class="ring r1" pathLength="60" d="M128 28 194 86 166 228 90 228 62 86Z"/><path class="ring r2" pathLength="60" d="M62 86 128 114 194 86M128 114 128 228"/></svg></span><span class="brand__word">Rock &amp; Mineral</span></div>
+        <div class="brand normal-only"><span class="brand__mark"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path class="ring r1" pathLength="60" d="M128 28 194 86 166 228 90 228 62 86Z"/><path class="ring r2" pathLength="60" d="M62 86 128 114 194 86M128 114 128 228"/></svg></span></div>
         <div class="editbar normal-only"><div class="segment segment--tools" id="cats" role="group" aria-label="Category"></div></div>
         <div class="sbar-search normal-only"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg><input class="input" id="search" type="search" placeholder="Search specimens" aria-label="Search specimens" autocomplete="off" enterkeyhint="search"></div>
         <span class="spacer"></span>
@@ -2442,6 +2469,12 @@ const dInfo = $('dInfo'), dView = $('dView'), dPanel = $('dPanel');
 const statChips = s => kindOf(s) === 'mineral'
   ? '<span class="stat stat--measured">Mohs <b>' + esc(hdTxt(s)) + '</b></span><span class="stat">Luster <b>' + (metallic(s) ? 'Metallic' : 'Nonmetallic') + '</b></span><span class="stat">Streak <span class="swatch-dot" style="background:' + esc(s.props.streakHex || '#fff') + '"></span><b>' + esc(first(s.props.streak).split(' ')[0]) + '</b></span>'
   : '<span class="stat">Type <b>' + CAT_LABELS[s.cat] + '</b></span><span class="stat">Texture <b>' + esc(first(s.props.texture)) + '</b></span><span class="stat">Grain <b>' + esc(first(s.props.grain)) + '</b></span>';
+const propRows = s => propsFor(s).map(([k, label]) => {
+  const raw = s.props[k]; if (raw == null || raw === '') return '';
+  const sw = k === 'streak' && s.props.streakHex ? '<span class="swatch-dot" style="background:' + esc(s.props.streakHex) + '"></span>' : '';
+  return '<div class="prop prop--' + k + '"><span class="prop__k">' + label + '</span><span class="prop__v">' + sw + esc(raw) + '</span></div>';
+}).join('');
+const pinsHtml = s => st.pins ? s.hotspots.map((h, i) => '<button slot="hotspot-' + i + '" class="hotspot" data-i="' + i + '" data-position="' + esc(h.position) + '" data-normal="' + esc(h.normal) + '" data-visibility-attribute="visible" aria-label="' + esc(h.label) + '"><span>' + esc(h.label) + '</span></button>').join('') : '';
 const act = (a, ico, label, extra = '') => '<button type="button" class="btn btn--ghost btn--sm' + extra + '" data-act="' + a + '">' + IC[ico] + label + '</button>';
 
 function openDetail(s) {
@@ -2450,18 +2483,14 @@ function openDetail(s) {
   try { history.replaceState(null, '', baseUrl() + '#s=' + s.id); } catch (e) {}
   const locked = st.quiz, uz = usdzFor(s);
   const attrs = 'src="' + esc(MODEL_BASE + s.glb) + '"' + (uz ? ' ios-src="' + esc(uz) + '" ar ar-modes="webxr scene-viewer quick-look"' : '');
-  const pins = st.pins ? s.hotspots.map((h, i) => '<button slot="hotspot-' + i + '" class="hotspot" data-i="' + i + '" data-position="' + esc(h.position) + '" data-normal="' + esc(h.normal) + '" data-visibility-attribute="visible" aria-label="' + esc(h.label) + '"><span>' + esc(h.label) + '</span></button>').join('') : '';
+  const pins = pinsHtml(s);
   dView.innerHTML = '<model-viewer id="dViewer" ' + attrs + ' alt="' + esc(s.name) + ' specimen" camera-controls touch-action="pan-y" ' + (st.rotate ? 'auto-rotate rotation-per-second="18deg" ' : '') + 'shadow-intensity="1" exposure="1.05" interaction-prompt="none">' + pins
     + (uz ? '<button slot="ar-button" class="btn btn--primary btn--sm" type="button">' + IC.phone + 'View in AR</button>' : '') + '</model-viewer>'
     + (st.hint ? '' : '<div class="pane__hint" id="dHint">Drag to rotate · scroll to zoom</div>');
   $('dKick').textContent = CAT_ONE[s.cat] + (s.no ? ' · No. ' + s.no : '');
   $('dName').textContent = s.name;
   dPanel.classList.toggle('is-locked', locked);
-  const props = propsFor(s).map(([k, label]) => {
-    const raw = s.props[k]; if (raw == null || raw === '') return '';
-    const sw = k === 'streak' && s.props.streakHex ? '<span class="swatch-dot" style="background:' + esc(s.props.streakHex) + '"></span>' : '';
-    return '<div class="prop prop--' + k + '"><span class="prop__k">' + label + '</span><span class="prop__v">' + sw + esc(raw) + '</span></div>';
-  }).join('');
+  const props = propRows(s);
   dInfo.innerHTML = (s.desc ? '<p class="dinfo__desc">' + esc(s.desc) + '</p>' : '')
     + '<div class="stats">' + statChips(s) + '</div>'
     + '<div class="dactions">' + act('share', 'share', 'Share') + act('qr', 'qr', 'QR') + act('listen', 'speaker', 'Listen') + act('print', 'printer', 'Print') + act('present', 'present', 'Present') + (st.edit ? act('addpin', 'pin', 'Add pin', ' btn--danger') : '') + '</div>'
@@ -2491,8 +2520,8 @@ dInfo.addEventListener('click', e => {
   else if (a === 'qr') toggleQR(s);
   else if (a === 'addpin') { pinArmed = true; toast('Click the model to drop a pin'); }
 });
-function toggleQR(s) {
-  const box = $('qrBox'); if (box.classList.contains('is-open')) { box.classList.remove('is-open'); box.innerHTML = ''; return; }
+function toggleQR(s, box = $('qrBox')) {
+  if (box.classList.contains('is-open')) { box.classList.remove('is-open'); box.innerHTML = ''; return; }
   const src = qrUrl(baseUrl() + '#s=' + s.id);
   box.innerHTML = src ? '<img src="' + src + '" alt="QR code for ' + esc(s.name) + '"><span>Scan to open this specimen in 3D and AR</span>' : '<span>The QR code needs a connection the first time. Try again online.</span>';
   box.classList.add('is-open');
@@ -2532,32 +2561,50 @@ function pinfoReads(s) {
     : [['Type', CAT_LABELS[s.cat]], ['Texture', first(s.props.texture)], ['Grain', first(s.props.grain)]];
   return r.map(([k, v]) => '<div class="readout"><div class="readout__label">' + k + '</div><div class="readout__value">' + esc(v) + '</div></div>').join('');
 }
-function stageModel(s) { view3d.innerHTML = ''; view3d.appendChild(makeViewer(s, { rotate: true, shadow: '1', exposure: '1.05' })); }
+function stageModel(s) { view3d.innerHTML = ''; const mv = makeViewer(s, { rotate: true, shadow: '1', exposure: '1.05' }); mv.insertAdjacentHTML('beforeend', pinsHtml(s)); view3d.appendChild(mv); }
 function renderPresent() {
   const s = byId(presentId); if (!s) return;
   stageModel(s);
   $('pName').textContent = s.name; $('pSub').textContent = CAT_LABELS[s.cat] + (kindOf(s) === 'mineral' && s.hardness != null ? ' · Mohs ' + s.hardness : '');
   $('pinfoReads').innerHTML = pinfoReads(s);
+  $('pinfoBody').innerHTML = '<div class="card qrbox" id="pQr"></div>' + (s.desc ? '<p class="dinfo__desc">' + esc(s.desc) + '</p>' : '') + '<div class="props">' + propRows(s) + '</div>';
+  $('pinfoBody').scrollTop = 0; stopSpeak(); syncPTools();
   const l = plist(), i = l.findIndex(x => x.id === presentId);
   $('pPrev').disabled = !(i > 0); $('pNext').disabled = !(i >= 0 && i < l.length - 1);
 }
 function pWake() { body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { if (body.classList.contains('present')) body.classList.add('idle'); }, 4000); }
 function enterStage() {
   if (railOpen()) closeRail();
+  { const o = innerWidth >= 1000; $('pinfo').classList.toggle('is-open', o); $('presentInfo').setAttribute('aria-expanded', o); }
   body.classList.add('present'); pWake(); lock(true);
-  try { const el = root; (el.requestFullscreen || el.webkitRequestFullscreen || (() => {})).call(el); } catch (e) {}
+  try { const el = root, p = (el.requestFullscreen || el.webkitRequestFullscreen || (() => {})).call(el); if (p && p.catch) p.catch(() => {}); } catch (e) {}
 }
 function startPresent(id) { fc = null; body.classList.remove('flash'); presentId = id || (displayList[0] || SPECIMENS[0] || {}).id; if (!presentId) return; renderPresent(); enterStage(); }
 function exitStage() {
   if (!body.classList.contains('present')) return;
-  body.classList.remove('present', 'idle', 'flash'); clearTimeout(idleT); view3d.innerHTML = ''; fc = null; lock(false);
+  stopSpeak(); body.classList.remove('present', 'idle', 'flash'); clearTimeout(idleT); view3d.innerHTML = ''; fc = null; lock(false);
   try { if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (e) {}
 }
 const pNav = d => { const l = plist(), i = l.findIndex(x => x.id === presentId), n = i + d; if (n < 0 || n >= l.length) return; presentId = l[n].id; renderPresent(); };
 $('present').addEventListener('click', () => startPresent());
 $('exitPresent').addEventListener('click', exitStage);
 $('pPrev').addEventListener('click', () => pNav(-1)); $('pNext').addEventListener('click', () => pNav(1));
-$('presentInfo').addEventListener('click', () => { const on = $('pinfo').classList.toggle('is-open'); $('presentInfo').setAttribute('aria-expanded', on); });
+const togglePinfo = () => { const on = $('pinfo').classList.toggle('is-open'); $('presentInfo').setAttribute('aria-expanded', on); };
+$('presentInfo').addEventListener('click', togglePinfo);
+function syncPTools() {
+  [['rotate', st.rotate], ['pins', st.pins], ['quiz', st.quiz]].forEach(([a, on]) => $('pinfoTools').querySelector('[data-act="' + a + '"]').setAttribute('aria-pressed', on));
+}
+$('pinfoTools').addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'), s = byId(presentId); if (!b || !s) return;
+  const a = b.dataset.act;
+  if (a === 'listen') toggleSpeak(s, b);
+  else if (a === 'share') shareLink(baseUrl() + '#s=' + s.id, s.name + ' specimen');
+  else if (a === 'qr') toggleQR(s, $('pQr'));
+  else if (a === 'print') printSpecimen(s);
+  else if (a === 'rotate') { st.rotate = !st.rotate; save({ autorotate: st.rotate }); syncToggles(); const mv = view3d.querySelector('model-viewer'); if (mv) mv.toggleAttribute('auto-rotate', st.rotate); if (mv && st.rotate) mv.setAttribute('rotation-per-second', '18deg'); syncPTools(); }
+  else if (a === 'pins') { st.pins = !st.pins; save({ hotspots: st.pins }); syncToggles(); stageModel(s); syncPTools(); }
+  else if (a === 'quiz') { setQuiz(!st.quiz); syncPTools(); }
+});
 ['pointermove', 'pointerdown', 'keydown'].forEach(t => document.addEventListener(t, () => { if (body.classList.contains('present')) pWake(); }, { passive: true }));
 document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && body.classList.contains('present')) exitStage(); });
 let tx = 0;
@@ -2666,6 +2713,7 @@ document.addEventListener('keydown', e => {
     if (t === $('detail')) { e.preventDefault(); navTo(d); } else if (body.classList.contains('present') && !fc) { e.preventDefault(); pNav(d); }
     return;
   }
+  if (body.classList.contains('present') && !t && e.key.toLowerCase() === 'i' && !fc) { togglePinfo(); return; }
   if (t || body.classList.contains('present')) return;
   const k = e.key.toLowerCase();
   if (e.key === '/') { e.preventDefault(); matchMedia('(max-width:48rem)').matches ? setSearchOpen(true) : searchEl.focus(); }
