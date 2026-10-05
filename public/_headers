@@ -9,3 +9,6 @@
 
 /index.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/posters/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

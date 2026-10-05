@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f5f5f7">
 <title>Rock and Mineral Specimens</title>
-<meta name="description" content="Spin 38 rock and mineral specimens in 3D and check the identification properties you need for the NYS Earth Science Regents.">
+<meta name="description" content="Spin 40 rock and mineral specimens in 3D and check the identification properties you need for the NYS Earth Science Regents.">
 <meta name="author" content="Mike Sammartano">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Rock and Mineral Specimens">
-<meta property="og:description" content="Spin 38 rock and mineral specimens in 3D and check the identification properties you need for the NYS Earth Science Regents.">
+<meta property="og:description" content="Spin 40 rock and mineral specimens in 3D and check the identification properties you need for the NYS Earth Science Regents.">
 <meta name="twitter:card" content="summary">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -51,7 +51,7 @@
   --scrim:rgba(0,0,0,.72); --dock:rgba(29,29,31,.92);
   --shadow-lift:0 1px 2px rgba(0,0,0,.45); --shadow-panel:0 18px 48px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.35); --shadow-overlay:0 32px 90px rgba(0,0,0,.65);
   --ink:#f5f5f7; --ink-1:#e8e8ed; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --ink-meta:#86868b;
-  --on-accent:#ffffff; --on-ink:#1d1d1f; --on-support:#ffffff;
+  --on-accent:#ffffff; --on-ink:#1d1d1f; --on-support:#ffffff; --spot:rgb(255 255 255 / .1);
   --r-sm:.5rem; --r-md:.75rem; --r-lg:1rem; --r-xl:1.25rem; --r-pill:999px;
   --ease:cubic-bezier(.2,.8,.2,1); --spring:cubic-bezier(.3,1.35,.5,1); --panel-t:.38s; --panel-ease:cubic-bezier(.32,.72,0,1); --fast:.13s; --med:.22s; --hit:2.75rem;
   --font:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI Variable", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; --mono:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -73,7 +73,7 @@
     --scrim:rgba(0,0,0,.4); --dock:rgba(255,255,255,.93);
     --shadow-lift:0 1px 2px rgba(0,0,0,.1); --shadow-panel:0 16px 40px rgba(0,0,0,.13),0 2px 6px rgba(0,0,0,.08); --shadow-overlay:0 28px 70px rgba(0,0,0,.2);
     --ink:#1d1d1f; --ink-1:#333336; --ink-2:#424245; --ink-3:#6e6e73; --ink-meta:#86868b;
-    --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff;
+    --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff; --spot:rgb(255 255 255 / .7);
   }
 }
 :root[data-theme="light"]{
@@ -92,7 +92,7 @@
   --scrim:rgba(0,0,0,.4); --dock:rgba(255,255,255,.93);
   --shadow-lift:0 1px 2px rgba(0,0,0,.1); --shadow-panel:0 16px 40px rgba(0,0,0,.13),0 2px 6px rgba(0,0,0,.08); --shadow-overlay:0 28px 70px rgba(0,0,0,.2);
   --ink:#1d1d1f; --ink-1:#333336; --ink-2:#424245; --ink-3:#6e6e73; --ink-meta:#86868b;
-  --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff;
+  --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff; --spot:rgb(255 255 255 / .7);
 }
 /* the viewer's own choice in Controls › Appearance wins over the device and the host page */
 :root[data-mode="dark"]{
@@ -111,7 +111,7 @@
   --scrim:rgba(0,0,0,.72); --dock:rgba(29,29,31,.92);
   --shadow-lift:0 1px 2px rgba(0,0,0,.45); --shadow-panel:0 18px 48px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.35); --shadow-overlay:0 32px 90px rgba(0,0,0,.65);
   --ink:#f5f5f7; --ink-1:#e8e8ed; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --ink-meta:#86868b;
-  --on-accent:#ffffff; --on-ink:#1d1d1f; --on-support:#ffffff;
+  --on-accent:#ffffff; --on-ink:#1d1d1f; --on-support:#ffffff; --spot:rgb(255 255 255 / .1);
 }
 :root[data-mode="light"]{
   color-scheme:light;
@@ -129,7 +129,7 @@
   --scrim:rgba(0,0,0,.4); --dock:rgba(255,255,255,.93);
   --shadow-lift:0 1px 2px rgba(0,0,0,.1); --shadow-panel:0 16px 40px rgba(0,0,0,.13),0 2px 6px rgba(0,0,0,.08); --shadow-overlay:0 28px 70px rgba(0,0,0,.2);
   --ink:#1d1d1f; --ink-1:#333336; --ink-2:#424245; --ink-3:#6e6e73; --ink-meta:#86868b;
-  --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff;
+  --on-accent:#ffffff; --on-ink:#ffffff; --on-support:#ffffff; --spot:rgb(255 255 255 / .7);
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -1017,7 +1017,7 @@ body{overflow-x:hidden}
 .spec__view model-viewer{width:100%; height:100%; background:transparent; --poster-color:transparent; opacity:0; transform:scale(.94); transition:opacity .5s var(--ease),transform .55s var(--spring)}
 .spec__view.is-ready model-viewer{opacity:1; transform:none}
 .spec:hover .spec__view.is-ready model-viewer{transform:scale(1.04)}
-.spec__view.is-loading::after{content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(100deg,transparent 35%,rgb(var(--input-rgb) / .09) 50%,transparent 65%); background-size:250% 100%; animation:sheen 1.8s linear infinite}
+.spec__view.is-loading::after,.spec__view.is-poster:not(.is-ready)::after{content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(100deg,transparent 35%,rgb(var(--input-rgb) / .09) 50%,transparent 65%); background-size:250% 100%; animation:sheen 1.8s linear infinite}
 .spec__view.is-ready::after{display:none}
 .spec__miss{position:absolute; inset:0; display:grid; place-items:center; padding:1rem; text-align:center; color:var(--ink-meta); font:600 .8125rem/1.3 var(--font)}
 .spec__body{display:flex; flex-direction:column; gap:.5rem; padding:.875rem 1rem 1rem}
@@ -1029,6 +1029,7 @@ body.quiz .spec__quiz{display:block}
 /* detail dialog */
 .dpanel{width:min(70rem,100%); height:min(46rem,100%)}
 .dprint{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+@media (max-width: 52rem){ .dprint{grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(15rem,42%) minmax(0,1fr)} .dprint .print__settings{border-left:0; border-top:1px solid var(--edge-soft)} }
 .dview{display:block; padding:0}
 .dview model-viewer{width:100%; height:100%; background:transparent; --poster-color:transparent; --progress-bar-color:var(--input); --progress-bar-height:3px}
 .dview .pane__hint{transition:opacity .3s var(--ease)}
@@ -1040,6 +1041,26 @@ body.quiz .spec__quiz{display:block}
 .qrbox.is-open{display:flex; align-items:center; gap:.875rem; padding:.875rem; animation:rise var(--med) var(--ease)}
 .qrbox img{width:7.5rem; height:7.5rem; padding:.375rem; border-radius:var(--r-sm); background:#fff; flex:none}
 .qrbox span{font:500 .8125rem/1.4 var(--font); color:var(--ink-3)}
+/* posters: instant card art, the live model loads when a specimen opens */
+.spec__view.is-poster::before{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 50% 46%,var(--spot),transparent 68%)}
+.spec__img{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transform:scale(.94); transition:opacity .45s var(--ease),transform .55s var(--spring)}
+.spec__view.is-ready .spec__img{opacity:1; transform:none}
+.spec:hover .spec__view.is-ready .spec__img{transform:scale(1.05)}
+@media (prefers-reduced-motion: reduce){ .spec__img{transition:opacity .2s linear; transform:none} .spec:hover .spec__view.is-ready .spec__img{transform:none} }
+/* Mohs scale */
+.mohs{display:flex; flex-direction:column; gap:.5rem; padding:.75rem .875rem .875rem; border-radius:var(--r-lg); background:var(--raised); border:1px solid var(--edge-soft)}
+.mohs__top{display:flex; align-items:baseline; justify-content:space-between; gap:.75rem}
+.mohs__k{font:600 .75rem/1 var(--font); color:var(--ink-meta)}
+.mohs__v{font:700 .9375rem/1 var(--font); letter-spacing:-.01em; color:var(--measured-ink); font-variant-numeric:tabular-nums}
+.mohs__track{position:relative; display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); height:2.5rem; border-radius:.75rem; background:var(--chip); overflow:hidden}
+.mohs__cell{position:relative; z-index:1; display:grid; place-items:center; padding-bottom:.25rem; font:600 .75rem/1 var(--font); color:var(--ink-meta); font-variant-numeric:tabular-nums; transition:color var(--med) var(--ease)}
+.mohs__cell + .mohs__cell{box-shadow:inset 1px 0 var(--edge-soft)}
+.mohs__cell.is-on{color:var(--ink); font-weight:700}
+.mohs__range{position:absolute; z-index:0; top:.25rem; bottom:.25rem; border-radius:.5rem; background:var(--input-wash); box-shadow:inset 0 0 0 2px var(--input); transition:left .45s var(--ease),width .45s var(--ease)}
+.mohs__tool{position:absolute; z-index:2; bottom:.1875rem; width:.5rem; height:.4375rem; margin-left:-.25rem; background:var(--ink-3); clip-path:polygon(50% 0,100% 100%,0 100%); pointer-events:none}
+.mohs__note{margin:0; font:500 .8125rem/1.4 var(--font); color:var(--ink-3)}
+.mohs__note b{color:var(--ink); font-weight:600}
+.mohs__note span{display:block; font-size:.75rem; color:var(--ink-meta)}
 .props{display:flex; flex-direction:column}
 .prop{display:grid; grid-template-columns:7.5rem minmax(0,1fr); gap:1rem; padding:.75rem 0; border-top:1px solid var(--edge-soft)}
 .prop:first-child{border-top:0; padding-top:0}
@@ -1191,7 +1212,7 @@ body.present.idle .pinfo__hint{opacity:1}
           <button class="btn btn--glass normal-only" id="present" type="button" data-tip="Present full screen (P)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H136V24a8,8,0,0,0-16,0V40H40A16,16,0,0,0,24,56V176a16,16,0,0,0,16,16H79.36L57.75,219a8,8,0,0,0,12.5,10l29.59-37h56.32l29.59,37a8,8,0,1,0,12.5-10l-21.61-27H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,136H40V56H216V176Z"/></svg><span class="btn__text">Present</span></button>
           <button class="btn btn--glass btn--icon" id="toggleControls" type="button" aria-label="Controls" aria-expanded="false" aria-controls="controls" data-tip="Controls (C)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M40,88H73a32,32,0,0,0,62,0h81a8,8,0,0,0,0-16H135a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16Zm64-24A16,16,0,1,1,88,80,16,16,0,0,1,104,64ZM216,168H199a32,32,0,0,0-62,0H40a8,8,0,0,0,0,16h97a32,32,0,0,0,62,0h17a8,8,0,0,0,0-16Zm-48,24a16,16,0,1,1,16-16A16,16,0,0,1,168,192Z"/></svg></button>
           <span class="segment__sep normal-only" aria-hidden="true"></span>
-          <button class="btn btn--support normal-only" id="support" type="button" aria-haspopup="dialog" aria-controls="supOverlay" data-tip="Support my work"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg><span class="btn__text">Support</span></button>
+          <button class="btn btn--support normal-only" id="support" type="button" aria-haspopup="dialog" aria-controls="supOverlay" data-tip="Donate"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg><span class="btn__text">Donate</span></button>
           <div class="pcards present-only">
             <div class="present-nav" style="display:contents">
               <button class="btn btn--glass btn--icon" id="pPrev" type="button" aria-label="Previous specimen" data-tip="Previous (←)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"/></svg></button>
@@ -1276,7 +1297,7 @@ body.present.idle .pinfo__hint{opacity:1}
     </div>
   </div>
   <div class="rail__foot">
-    <button class="welcome__support support-card js-donate" type="button"><span class="welcome__cup"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><span class="welcome__support-text"><b>Support my work</b><small>Keeps the Rock and Mineral Gallery free for every classroom</small></span><svg class="welcome__support-arrow" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></button>
+    <button class="welcome__support support-card js-donate" type="button"><span class="welcome__cup"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><span class="welcome__support-text"><b>Donate</b><small>Keeps the Rock and Mineral Gallery free for every classroom</small></span><svg class="welcome__support-arrow" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></button>
     <div class="rail__links">
       <button class="btn btn--quiet btn--sm" id="openFeedback" type="button" data-tip="Send an idea, a bug or a question"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M216,48H40A16,16,0,0,0,24,64V224a15.84,15.84,0,0,0,9.25,14.5A16.05,16.05,0,0,0,40,240a15.89,15.89,0,0,0,10.25-3.78.69.69,0,0,0,.13-.11L82.5,208H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48ZM40,224h0ZM216,192H82.5a16,16,0,0,0-10.3,3.75l-.12.11L40,224V64H216Z"/></svg>Feedback</button>
       <button class="btn btn--quiet btn--sm kbd-link" id="openKeys" type="button" data-tip="Keyboard shortcuts (?)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,144H32V64H224V192ZM64,96a8,8,0,0,1,8-8H84a8,8,0,0,1,0,16H72A8,8,0,0,1,64,96Zm48,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,96Zm48,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H168A8,8,0,0,1,160,96ZM64,128a8,8,0,0,1,8-8H84a8,8,0,0,1,0,16H72A8,8,0,0,1,64,128Zm48,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H120A8,8,0,0,1,112,128Zm48,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H168A8,8,0,0,1,160,128ZM72,160H184a8,8,0,0,1,0,16H72a8,8,0,0,1,0-16Z"/></svg>Shortcuts</button>
@@ -1332,7 +1353,7 @@ body.present.idle .pinfo__hint{opacity:1}
       <li><span class="welcome__icon"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M251.76,88.94l-120-64a8,8,0,0,0-7.52,0l-120,64a8,8,0,0,0,0,14.12L32,117.87v48.42a15.91,15.91,0,0,0,4.06,10.65C49.16,191.53,78.51,216,128,216a130,130,0,0,0,51.63-10.13V240a8,8,0,0,0,16,0V194.4a115.63,115.63,0,0,0,24.31-17.46A15.91,15.91,0,0,0,224,166.29V117.87l27.76-14.81a8,8,0,0,0,0-14.12ZM128,200c-43.27,0-68.72-21.14-80-33.71V126.4l76.24,40.66a8,8,0,0,0,7.52,0L208,126.4v39.87C196.72,178.86,171.27,200,128,200Zm80-99.73-.22-.12-76-40.53a8,8,0,0,0-7.52,14.12L187.82,107,128,150.73,43.59,96,128,42.54,212.41,96Z"/></svg></span><span><b>Quiz yourself.</b> Hide the names and test what you know.</span></li>
       <li><span class="welcome__icon"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16Zm8,200a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V40a8,8,0,0,1,8-8h96a8,8,0,0,1,8,8Zm-56-24a12,12,0,1,1-12-12A12,12,0,0,1,128,192Z"/></svg></span><span><b>View in AR.</b> Put a specimen on your desk with an iPad or iPhone.</span></li>
     </ul>
-    <button class="welcome__support js-donate" type="button"><span class="welcome__cup"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><span class="welcome__support-text"><b>Support my work</b><small>Keeps the Rock and Mineral Gallery free for every classroom</small></span><svg class="welcome__support-arrow" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></button>
+    <button class="welcome__support js-donate" type="button"><span class="welcome__cup"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><span class="welcome__support-text"><b>Donate</b><small>Keeps the Rock and Mineral Gallery free for every classroom</small></span><svg class="welcome__support-arrow" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></button>
     <div class="welcome__foot"><button class="btn btn--primary" id="welStart" type="button">Start exploring</button></div>
     <p class="welcome__tip">Tip: tap any specimen to open it.</p>
   </div>
@@ -1340,7 +1361,7 @@ body.present.idle .pinfo__hint{opacity:1}
 
 <div class="overlay sup" id="supOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="supTitle">
   <div class="sup__panel" id="supPanel" tabindex="-1">
-    <div class="sup__head"><span class="sup__icon"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><div class="sup__titles"><h2 id="supTitle">Support my work</h2><p>I make these tools in my spare time and keep them free for classrooms. If they've helped you, any support goes toward the costs of running them, and it truly means a lot.</p></div><button class="btn btn--quiet btn--icon sup__x" id="supClose" type="button" aria-label="Close" data-tip="Close (Esc)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></div>
+    <div class="sup__head"><span class="sup__icon"><svg class="heart" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"/></svg></span><div class="sup__titles"><h2 id="supTitle">Donate</h2><p>I make these tools in my spare time and keep them free for classrooms. If they've helped you, any support goes toward the costs of running them, and it truly means a lot.</p></div><button class="btn btn--quiet btn--icon sup__x" id="supClose" type="button" aria-label="Close" data-tip="Close (Esc)"><svg aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button></div>
     <form class="sup__form" id="supForm" novalidate>
       <div class="segment segment--fill sup__amts" role="radiogroup" aria-label="Amount">
         <label class="segment__item"><input class="sup__radio" type="radio" name="supAmt" value="500">$5</label>
@@ -1387,26 +1408,29 @@ body.present.idle .pinfo__hint{opacity:1}
 </div>
 <div id="printArea"></div>
 
-<script type="application/json" id="specimen-data">[
+<script type="application/json" id="specimen-data">
+[
   {
     "id": "almandine",
     "name": "Almandine",
     "cat": "mineral",
     "glb": "Almandine.glb",
     "usdz": null,
-    "hardness": 7,
+    "hardness": 7.0,
     "desc": "A deep red garnet that forms hard, many-sided crystals.",
     "hotspots": [],
     "props": {
       "luster": "Vitreous to resinous",
-      "hardness": "7 to 7.5",
+      "hardness": "6.5 to 7.5",
+      "density": "4.3",
       "streak": "White",
       "streakHex": "#f3f3f0",
-      "cleavage": "None; conchoidal fracture",
+      "breakage": "Fracture",
+      "cleavage": "No cleavage; conchoidal to uneven fracture",
       "color": "Deep red to reddish-brown",
       "composition": "Fe₃Al₂(SiO₄)₃",
       "distinguishing": "Twelve-sided crystals, deep red, very hard, no cleavage",
-      "uses": "Abrasives (garnet paper), gemstone"
+      "uses": "Gemstone, abrasives (garnet sandpaper)"
     },
     "no": "001"
   },
@@ -1462,13 +1486,15 @@ body.present.idle .pinfo__hint{opacity:1}
     "props": {
       "luster": "Vitreous to pearly",
       "hardness": "2.5 to 3",
+      "density": "3.0",
       "streak": "White to gray",
       "streakHex": "#efefea",
-      "cleavage": "Perfect cleavage in one direction (peels into sheets)",
+      "breakage": "Cleavage",
+      "cleavage": "1 perfect direction; peels into thin, flexible sheets",
       "color": "Black to dark brown",
       "composition": "K(Mg,Fe)₃AlSi₃O₁₀(OH)₂",
-      "distinguishing": "Splits into thin, flexible, dark sheets",
-      "uses": "Geologic dating, mineral specimen"
+      "distinguishing": "Black mica that splits into thin, flexible sheets",
+      "uses": "Mineral specimen, dating rocks"
     },
     "no": "004"
   },
@@ -1498,19 +1524,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Calcite.glb",
     "usdz": null,
-    "hardness": 3,
+    "hardness": 3.0,
     "desc": "A common carbonate mineral that fizzes in acid.",
     "hotspots": [],
     "props": {
       "luster": "Vitreous",
       "hardness": "3",
+      "density": "2.7",
       "streak": "White",
       "streakHex": "#f6f6f3",
-      "cleavage": "Perfect cleavage in 3 directions, not at 90 degrees (rhombohedral)",
-      "color": "Colorless to white, many tints",
+      "breakage": "Cleavage",
+      "cleavage": "3 perfect directions, not at 90° (rhombohedral)",
+      "color": "Colorless, white, many tints",
       "composition": "CaCO₃",
-      "distinguishing": "Fizzes in dilute acid, rhombic cleavage, double refraction",
-      "uses": "Cement, building stone, optical instruments"
+      "distinguishing": "Fizzes in dilute hydrochloric acid, rhombic cleavage, double refraction",
+      "uses": "Cement, lime, building stone"
     },
     "no": "006"
   },
@@ -1600,19 +1628,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Fluorite.glb",
     "usdz": null,
-    "hardness": 4,
+    "hardness": 4.0,
     "desc": "A colorful mineral that defines hardness 4 on the Mohs scale.",
     "hotspots": [],
     "props": {
       "luster": "Vitreous",
       "hardness": "4",
+      "density": "3.2",
       "streak": "White",
       "streakHex": "#f4f4f2",
-      "cleavage": "Perfect cleavage in 4 directions (octahedral)",
-      "color": "Purple, green, blue, yellow, colorless",
+      "breakage": "Cleavage",
+      "cleavage": "4 perfect directions (octahedral)",
+      "color": "Colorless, purple, green, blue, yellow",
       "composition": "CaF₂",
-      "distinguishing": "Cubic crystals, wide color range, defines hardness 4",
-      "uses": "Flux in steelmaking, hydrofluoric acid, optics"
+      "distinguishing": "Cubic crystals, wide color range, glows under ultraviolet light",
+      "uses": "Steelmaking flux, hydrofluoric acid, optics"
     },
     "no": "011"
   },
@@ -1648,13 +1678,15 @@ body.present.idle .pinfo__hint{opacity:1}
     "props": {
       "luster": "Metallic",
       "hardness": "2.5",
-      "streak": "Lead-gray",
+      "density": "7.6",
+      "streak": "Gray to lead-gray",
       "streakHex": "#6f7174",
-      "cleavage": "Perfect cubic cleavage (3 directions at 90 degrees)",
-      "color": "Lead-gray",
+      "breakage": "Cleavage",
+      "cleavage": "3 perfect directions at 90° (cubic)",
+      "color": "Silver to lead-gray",
       "composition": "PbS",
-      "distinguishing": "Very heavy and dense, metallic gray, cubic cleavage",
-      "uses": "Chief ore of lead"
+      "distinguishing": "Very heavy for its size, cubic cleavage, metallic gray",
+      "uses": "Chief ore of lead, batteries"
     },
     "no": "013"
   },
@@ -1688,14 +1720,16 @@ body.present.idle .pinfo__hint{opacity:1}
     "desc": "A soft, dark form of carbon that marks paper.",
     "hotspots": [],
     "props": {
-      "luster": "Metallic to dull",
+      "luster": "Metallic to earthy",
       "hardness": "1 to 2",
-      "streak": "Gray to black",
+      "density": "2.3",
+      "streak": "Black to gray",
       "streakHex": "#4a4a4a",
-      "cleavage": "Perfect cleavage in one direction",
-      "color": "Steel-gray to black",
+      "breakage": "Cleavage",
+      "cleavage": "1 perfect direction (flakes apart)",
+      "color": "Silver-gray to black",
       "composition": "C",
-      "distinguishing": "Greasy feel, marks paper, very soft, dark streak",
+      "distinguishing": "Greasy feel, marks paper, very soft",
       "uses": "Pencil lead, lubricant, electrodes"
     },
     "no": "015"
@@ -1706,19 +1740,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Gypsum.glb",
     "usdz": null,
-    "hardness": 2,
+    "hardness": 2.0,
     "desc": "A very soft sulfate mineral used to make plaster and drywall.",
     "hotspots": [],
     "props": {
       "luster": "Vitreous to pearly",
       "hardness": "2",
+      "density": "2.3",
       "streak": "White",
       "streakHex": "#f7f7f5",
-      "cleavage": "Good cleavage in one direction",
-      "color": "Colorless, white, gray",
+      "breakage": "Cleavage",
+      "cleavage": "1 perfect direction, two poorer directions",
+      "color": "Colorless, white, gray, pink",
       "composition": "CaSO₄·2H₂O",
-      "distinguishing": "Very soft, scratched by a fingernail, often in beds",
-      "uses": "Plaster, drywall, cement"
+      "distinguishing": "Very soft, a fingernail scratches it",
+      "uses": "Plaster, wallboard (drywall), cement"
     },
     "no": "016"
   },
@@ -1734,12 +1770,14 @@ body.present.idle .pinfo__hint{opacity:1}
     "props": {
       "luster": "Vitreous",
       "hardness": "2.5",
+      "density": "2.2",
       "streak": "White",
       "streakHex": "#f6f6f4",
-      "cleavage": "Perfect cubic cleavage (3 directions at 90 degrees)",
+      "breakage": "Cleavage",
+      "cleavage": "3 perfect directions at 90° (cubic)",
       "color": "Colorless to white",
       "composition": "NaCl",
-      "distinguishing": "Salty taste, cubic crystals and cleavage, dissolves in water",
+      "distinguishing": "Salty taste, cubic crystals, dissolves in water",
       "uses": "Table salt, road de-icing, chemicals"
     },
     "no": "017"
@@ -1756,13 +1794,15 @@ body.present.idle .pinfo__hint{opacity:1}
     "props": {
       "luster": "Vitreous",
       "hardness": "5 to 6",
+      "density": "3.2",
       "streak": "Gray to white",
       "streakHex": "#e9e9e4",
-      "cleavage": "Two directions at about 60 and 120 degrees",
+      "breakage": "Cleavage",
+      "cleavage": "2 good directions at 56° and 124°",
       "color": "Dark green to black",
-      "composition": "Complex calcium-iron-magnesium silicate",
-      "distinguishing": "Dark, elongated crystals with two cleavages near 60 and 120 degrees",
-      "uses": "Rock-forming mineral, specimen"
+      "composition": "Ca, Na, Mg, Fe, Al silicate with OH (amphibole)",
+      "distinguishing": "Long dark crystals, two cleavages at 56° and 124°",
+      "uses": "Rock-forming mineral, crushed stone"
     },
     "no": "018"
   },
@@ -1858,13 +1898,15 @@ body.present.idle .pinfo__hint{opacity:1}
     "props": {
       "luster": "Vitreous",
       "hardness": "6.5 to 7",
+      "density": "3.3",
       "streak": "White",
       "streakHex": "#f2f3ee",
-      "cleavage": "Poor; conchoidal fracture",
+      "breakage": "Fracture",
+      "cleavage": "No cleavage; conchoidal fracture",
       "color": "Olive green to yellow-green",
       "composition": "(Mg,Fe)₂SiO₄",
       "distinguishing": "Glassy green grains, common in basalt and the mantle",
-      "uses": "Source of magnesium, peridot gemstone"
+      "uses": "Peridot gemstone, foundry sand"
     },
     "no": "023"
   },
@@ -1914,18 +1956,20 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "PotassiumFeldspar.glb",
     "usdz": null,
-    "hardness": 6,
+    "hardness": 6.0,
     "desc": "A pink-to-white feldspar that defines hardness 6.",
     "hotspots": [],
     "props": {
-      "luster": "Vitreous",
+      "luster": "Vitreous to pearly",
       "hardness": "6",
+      "density": "2.6",
       "streak": "White",
       "streakHex": "#f4f4f1",
-      "cleavage": "Two directions at about 90 degrees",
-      "color": "Pink, white, gray",
+      "breakage": "Cleavage",
+      "cleavage": "2 good directions at 90°",
+      "color": "Pink, white, gray, green",
       "composition": "KAlSi₃O₈",
-      "distinguishing": "Often pink, two cleavages at about 90 degrees, defines hardness 6",
+      "distinguishing": "Often pink, two cleavages at 90°, defines hardness 6",
       "uses": "Ceramics, glass, porcelain"
     },
     "no": "026"
@@ -1956,19 +2000,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Pyrite.glb",
     "usdz": null,
-    "hardness": 6.5,
+    "hardness": 6.25,
     "desc": "A brass-colored metallic mineral known as fool's gold, often in cubic crystals.",
     "hotspots": [],
     "props": {
       "luster": "Metallic",
       "hardness": "6 to 6.5",
+      "density": "5.0",
       "streak": "Greenish-black to brownish-black",
       "streakHex": "#33312b",
-      "cleavage": "None; uneven fracture, brittle",
-      "color": "Brass-yellow (pale gold)",
+      "breakage": "Fracture",
+      "cleavage": "No cleavage; uneven fracture, brittle",
+      "color": "Brass-yellow",
       "composition": "FeS₂",
-      "distinguishing": "Cubic crystals, metallic brass color (fool's gold), dark streak",
-      "uses": "Source of sulfur, sulfuric acid production, mineral specimen"
+      "distinguishing": "Fool's gold, cubic crystals, brassy color, dark streak",
+      "uses": "Sulfuric acid production, mineral specimen"
     },
     "no": "028"
   },
@@ -2118,19 +2164,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Sulfur.glb",
     "usdz": null,
-    "hardness": 2,
+    "hardness": 2.0,
     "desc": "A soft, bright yellow mineral that forms near volcanic vents.",
     "hotspots": [],
     "props": {
-      "luster": "Resinous to greasy (nonmetallic)",
+      "luster": "Resinous to greasy",
       "hardness": "1.5 to 2.5",
+      "density": "2.1",
       "streak": "White to pale yellow",
       "streakHex": "#f1e6ad",
-      "cleavage": "Poor; brittle with uneven fracture",
+      "breakage": "Fracture",
+      "cleavage": "Poor cleavage; conchoidal to uneven fracture",
       "color": "Bright yellow",
       "composition": "S",
-      "distinguishing": "Vivid yellow color, very soft, low melting point",
-      "uses": "Sulfuric acid, fertilizer, matches, vulcanizing rubber"
+      "distinguishing": "Vivid yellow, very soft, melts at a low temperature",
+      "uses": "Sulfuric acid, fertilizer, matches, rubber"
     },
     "no": "036"
   },
@@ -2140,19 +2188,21 @@ body.present.idle .pinfo__hint{opacity:1}
     "cat": "mineral",
     "glb": "Talc.glb",
     "usdz": null,
-    "hardness": 1,
+    "hardness": 1.0,
     "desc": "The softest mineral, with a greasy, soapy feel.",
     "hotspots": [],
     "props": {
-      "luster": "Pearly to greasy (nonmetallic)",
+      "luster": "Pearly to greasy",
       "hardness": "1",
+      "density": "2.7",
       "streak": "White",
       "streakHex": "#f6f6f4",
-      "cleavage": "Perfect cleavage in one direction; soapy feel",
+      "breakage": "Cleavage",
+      "cleavage": "1 perfect direction",
       "color": "White, pale green, gray",
       "composition": "Mg₃Si₄O₁₀(OH)₂",
-      "distinguishing": "Softest mineral (Mohs 1), greasy or soapy feel",
-      "uses": "Talcum powder, ceramics, paint, lubricant"
+      "distinguishing": "The softest mineral, soapy or greasy feel",
+      "uses": "Talcum powder, ceramics, paint, soapstone"
     },
     "no": "037"
   },
@@ -2175,8 +2225,57 @@ body.present.idle .pinfo__hint{opacity:1}
       "uses": "Lightweight aggregate, landscaping"
     },
     "no": "038"
+  },
+  {
+    "id": "hematite",
+    "name": "Hematite",
+    "cat": "mineral",
+    "glb": "hematite.glb",
+    "usdz": "Hematite.usdz",
+    "hardness": 6.0,
+    "desc": "An iron ore that looks metallic gray but leaves a red-brown streak.",
+    "hotspots": [],
+    "props": {
+      "luster": "Metallic or earthy",
+      "hardness": "5.5 to 6.5",
+      "density": "5.3",
+      "streak": "Red-brown",
+      "streakHex": "#8a3a2c",
+      "breakage": "Fracture",
+      "cleavage": "No cleavage; uneven fracture",
+      "color": "Silver-gray to black, or red-brown",
+      "composition": "Fe₂O₃",
+      "distinguishing": "Red-brown streak even when the mineral looks gray or black",
+      "uses": "Chief ore of iron, pigment, jewelry"
+    },
+    "no": "039"
+  },
+  {
+    "id": "garnet",
+    "name": "Garnet",
+    "cat": "mineral",
+    "glb": "garnet.glb",
+    "usdz": "garnet.usdz",
+    "hardness": 7.0,
+    "desc": "Dark red, many-sided garnet crystals growing on rock.",
+    "hotspots": [],
+    "props": {
+      "luster": "Vitreous to resinous",
+      "hardness": "6.5 to 7.5",
+      "density": "4.3",
+      "streak": "White",
+      "streakHex": "#f3f3f0",
+      "breakage": "Fracture",
+      "cleavage": "No cleavage; conchoidal to uneven fracture",
+      "color": "Dark red to reddish-brown",
+      "composition": "Fe₃Al₂(SiO₄)₃ (almandine garnet)",
+      "distinguishing": "Dark red, many-sided crystals, very hard, no cleavage",
+      "uses": "Gemstone, abrasives (garnet sandpaper)"
+    },
+    "no": "040"
   }
-]</script>
+]
+</script>
 <script>
 (() => {
 'use strict';
@@ -2189,7 +2288,7 @@ SPECIMENS.forEach(s => { if (!Array.isArray(s.hotspots)) s.hotspots = []; if (!s
 const CAT_LABELS = { mineral: 'Minerals', igneous: 'Igneous', sedimentary: 'Sedimentary', metamorphic: 'Metamorphic' };
 const CAT_ONE = { mineral: 'Mineral', igneous: 'Igneous rock', sedimentary: 'Sedimentary rock', metamorphic: 'Metamorphic rock' };
 const CATS = Object.keys(CAT_LABELS);
-const MINERAL_PROPS = [['luster','Luster'],['hardness','Hardness'],['streak','Streak'],['cleavage','Cleavage / fracture'],['color','Color'],['composition','Composition'],['distinguishing','Distinguishing'],['uses','Common uses']];
+const MINERAL_PROPS = [['luster','Luster'],['hardness','Hardness (Mohs)'],['density','Density'],['streak','Streak'],['breakage','Breakage'],['color','Color'],['composition','Composition'],['distinguishing','Distinguishing'],['uses','Common uses']];
 const ROCK_PROPS = [['type','Type'],['texture','Texture'],['grain','Grain size'],['composition','Composition'],['environment','Environment of formation'],['distinguishing','Distinguishing'],['uses','Common uses']];
 const MODEL_BASE = 'https://models.mikesammartano.com/';
 const USDZ_ENABLED = true;
@@ -2205,7 +2304,19 @@ const baseUrl = () => location.href.split('#')[0];
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 const usdzFor = s => !USDZ_ENABLED ? '' : MODEL_BASE + (s.usdz || s.glb.replace(/\.glb$/i, '.usdz'));
-const hdTxt = s => s.hardness == null ? '' : String(s.hardness);
+const rng = t => String(t == null ? '' : t).replace(/\s+to\s+/, '\u2013');
+const hdTxt = s => s.props && s.props.hardness ? rng(s.props.hardness) : (s.hardness == null ? '' : String(s.hardness));
+const hdRange = s => { const n = (String(s.props.hardness || s.hardness || '').match(/\d+(?:\.\d+)?/g) || []).map(Number); return n.length ? [Math.min(...n), Math.max(...n)] : null; };
+/* breakage: Cleavage (flat, repeating faces) or Fracture (irregular), with the detail the Reference Tables give */
+const brkKind = s => s.props.breakage || (/^(none|no cleavage|poor)/i.test(s.props.cleavage || '') ? 'Fracture' : (s.props.cleavage ? 'Cleavage' : ''));
+const lusterKind = s => { const l = s.props.luster || ''; return /metallic or/i.test(l) ? 'Either' : (metallic(s) ? 'Metallic' : 'Nonmetallic'); };
+const propVal = (s, k) => {
+  const v = s.props[k]; if (k === 'breakage') { const kind = brkKind(s), d = s.props.cleavage; return kind && d ? kind + ': ' + d : (kind || d || ''); }
+  if (v == null || v === '') return '';
+  if (k === 'hardness') return rng(v);
+  if (k === 'density') return /g\/cm/.test(v) ? v : v + ' g/cm\u00b3';
+  return v;
+};
 
 /* ---------- settings ---------- */
 const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } };
@@ -2319,7 +2430,7 @@ mq.addEventListener && mq.addEventListener('change', () => { syncTheme(); });
 /* ---------- viewer + grid ---------- */
 function makeViewer(s, o = {}) {
   const mv = document.createElement('model-viewer');
-  mv.setAttribute('src', MODEL_BASE + s.glb);
+  mv.setAttribute('src', MODEL_BASE + s.glb); mv.setAttribute('poster', posterUrl(s)); mv.setAttribute('reveal', 'auto');
   mv.setAttribute('alt', s.desc ? s.name + '. ' + s.desc : s.name + ' specimen');
   mv.setAttribute('camera-controls', ''); mv.setAttribute('touch-action', 'pan-y');
   mv.setAttribute('interaction-prompt', 'none'); mv.setAttribute('shadow-intensity', o.shadow || '0.9'); mv.setAttribute('exposure', o.exposure || '1');
@@ -2327,6 +2438,7 @@ function makeViewer(s, o = {}) {
   if (o.rotate && st.rotate) { mv.setAttribute('auto-rotate', ''); mv.setAttribute('rotation-per-second', '18deg'); }
   return mv;
 }
+const posterUrl = s => 'posters/' + encodeURIComponent(s.id) + '.webp';
 const specsEl = $('specs');
 let queue = [], busyN = 0, displayList = [];
 const MAXC = 2;
@@ -2363,11 +2475,17 @@ function render() {
   if (!list.length) { specsEl.innerHTML = '<div class="specs__empty"><b>No specimens match</b>Try another word, or clear the search.</div>'; return; }
   specsEl.innerHTML = list.map((s, i) =>
     '<article class="card spec" tabindex="0" role="button" data-id="' + esc(s.id) + '" aria-label="' + esc(s.name) + ' detail" style="animation-delay:' + Math.min(i * 30, 300) + 'ms">'
-    + '<div class="spec__view is-loading"></div>'
+    + '<div class="spec__view is-poster"><img class="spec__img" src="' + esc(posterUrl(s)) + '" alt="" width="600" height="600" loading="lazy" decoding="async"></div>'
     + '<div class="spec__body"><span class="t-eyebrow spec__kick">' + CAT_LABELS[s.cat] + '</span><h3 class="t-head spec__name">' + esc(s.name) + '</h3><h3 class="t-head spec__quiz">Identify this specimen</h3><div class="stats">' + chipFor(s) + '</div></div></article>').join('');
-  specsEl.querySelectorAll('.spec').forEach((c, i) => { const v = c.firstChild; v._spec = list[i]; io ? io.observe(v) : (queue.push(v), pump()); });
+  specsEl.querySelectorAll('.spec').forEach((c, i) => { const v = c.firstChild; v._spec = list[i]; const im = v.firstChild; if (im.complete && im.naturalWidth) v.classList.add('is-ready'); });
   specsEl.scrollTop = 0;
 }
+/* poster loaded: fade in. Poster missing (a specimen added in the editor): fall back to a live model */
+specsEl.addEventListener('load', e => { if (e.target.classList && e.target.classList.contains('spec__img')) e.target.parentNode.classList.add('is-ready'); }, true);
+specsEl.addEventListener('error', e => {
+  const im = e.target; if (!im.classList || !im.classList.contains('spec__img')) return;
+  const v = im.parentNode; im.remove(); v.classList.remove('is-poster'); v.classList.add('is-loading'); io ? io.observe(v) : (queue.push(v), pump());
+}, true);
 specsEl.addEventListener('click', e => { const c = e.target.closest('.spec'); if (c) openDetail(byId(c.dataset.id)); });
 specsEl.addEventListener('keydown', e => { if (e.key !== 'Enter' && e.key !== ' ') return; const c = e.target.closest('.spec'); if (c) { e.preventDefault(); openDetail(byId(c.dataset.id)); } });
 
@@ -2444,9 +2562,11 @@ function stopSpeak() { try { speechSynthesis.cancel(); } catch (e) {} speaking =
 function speakText(s) {
   const kind = kindOf(s), p = s.props, bits = [s.name + '.', 'This is ' + (kind === 'mineral' ? 'a mineral' : (s.cat === 'igneous' ? 'an igneous rock' : s.cat === 'sedimentary' ? 'a sedimentary rock' : 'a metamorphic rock')) + '.'];
   if (kind === 'mineral') {
-    if (s.hardness != null) bits.push('Mohs hardness ' + s.hardness + '.');
-    if (p.luster) bits.push((metallic(s) ? 'Metallic' : 'Nonmetallic') + ' luster.');
+    if (hdTxt(s)) bits.push('Mohs hardness ' + hdTxt(s).replace('\u2013', ' to ') + '.');
+    if (p.density) bits.push('Density ' + p.density + ' grams per cubic centimeter.');
+    if (p.luster) bits.push(lusterKind(s) + ' luster.');
     if (p.color) bits.push('Color, ' + p.color + '.'); if (p.streak) bits.push('Streak, ' + p.streak + '.');
+    if (propVal(s, 'breakage')) bits.push('Breakage, ' + propVal(s, 'breakage') + '.');
   } else {
     if (p.texture) bits.push(first(p.texture) + ' texture.'); if (p.grain) bits.push('Grain size, ' + p.grain + '.');
     if (p.environment) bits.push('Forms in ' + p.environment + '.');
@@ -2467,10 +2587,28 @@ const qrUrl = url => { try { if (typeof qrcode === 'undefined') return null; con
 let curId = null, pinArmed = false;
 const dInfo = $('dInfo'), dView = $('dView'), dPanel = $('dPanel');
 const statChips = s => kindOf(s) === 'mineral'
-  ? '<span class="stat stat--measured">Mohs <b>' + esc(hdTxt(s)) + '</b></span><span class="stat">Luster <b>' + (metallic(s) ? 'Metallic' : 'Nonmetallic') + '</b></span><span class="stat">Streak <span class="swatch-dot" style="background:' + esc(s.props.streakHex || '#fff') + '"></span><b>' + esc(first(s.props.streak).split(' ')[0]) + '</b></span>'
+  ? '<span class="stat stat--measured">Mohs <b>' + esc(hdTxt(s)) + '</b></span>' + (s.props.density ? '<span class="stat">Density <b>' + esc(propVal(s, 'density')) + '</b></span>' : '') + '<span class="stat">Luster <b>' + lusterKind(s) + '</b></span><span class="stat">Streak <span class="swatch-dot" style="background:' + esc(s.props.streakHex || '#fff') + '"></span><b>' + esc(first(s.props.streak).split(' ')[0]) + '</b></span>' + (brkKind(s) ? '<span class="stat">Breakage <b>' + esc(brkKind(s)) + '</b></span>' : '')
   : '<span class="stat">Type <b>' + CAT_LABELS[s.cat] + '</b></span><span class="stat">Texture <b>' + esc(first(s.props.texture)) + '</b></span><span class="stat">Grain <b>' + esc(first(s.props.grain)) + '</b></span>';
+/* Mohs scale: the mineral's range on a 1 to 10 track, with the Reference Tables' scratch tests */
+const MOHS_REF = ['Talc', 'Gypsum', 'Calcite', 'Fluorite', 'Apatite', 'Feldspar', 'Quartz', 'Topaz', 'Corundum', 'Diamond'];
+const MOHS_TOOLS = [['A fingernail', 2.5], ['A copper penny', 3.5], ['A steel nail', 5.5]];
+function scratchNote(lo, hi) {
+  for (const [name, h] of MOHS_TOOLS) { if (hi < h) return name + ' scratches it'; if (lo <= h) return 'About as hard as ' + name.toLowerCase(); }
+  return 'It scratches glass and a steel nail';
+}
+function mohsHtml(s) {
+  const r = hdRange(s); if (!r || kindOf(s) !== 'mineral') return '';
+  const [lo, hi] = r, pos = h => (h - .5) * 10;
+  let w = Math.max((hi - lo) * 10 + 4, 6), l = (lo - .5) * 10 + ((hi - lo) * 10 - w) / 2 + 0; l = Math.max(0, Math.min(100 - w, l));
+  const cells = MOHS_REF.map((n, i) => '<span class="mohs__cell' + (i + 1 >= lo - .25 && i + 1 <= hi + .25 ? ' is-on' : '') + '" title="' + (i + 1) + ' ' + n + '">' + (i + 1) + '</span>').join('');
+  const tools = MOHS_TOOLS.map(([n, h]) => '<span class="mohs__tool" style="left:' + pos(h) + '%" title="' + n.replace('A ', '') + ' ' + h + '"></span>').join('');
+  return '<div class="mohs" role="img" aria-label="Mohs hardness ' + esc(hdTxt(s)) + ' on a scale from 1 to 10. ' + scratchNote(lo, hi) + '.">'
+    + '<div class="mohs__top"><span class="mohs__k">Mohs scale</span><span class="mohs__v">' + esc(hdTxt(s)) + '</span></div>'
+    + '<div class="mohs__track"><span class="mohs__range" style="left:' + l + '%;width:' + w + '%"></span>' + cells + tools + '</div>'
+    + '<p class="mohs__note"><b>' + scratchNote(lo, hi) + '.</b> <span>Tests: fingernail 2.5, copper penny 3.5, steel nail 5.5.</span></p></div>';
+}
 const propRows = s => propsFor(s).map(([k, label]) => {
-  const raw = s.props[k]; if (raw == null || raw === '') return '';
+  const raw = propVal(s, k); if (raw == null || raw === '') return '';
   const sw = k === 'streak' && s.props.streakHex ? '<span class="swatch-dot" style="background:' + esc(s.props.streakHex) + '"></span>' : '';
   return '<div class="prop prop--' + k + '"><span class="prop__k">' + label + '</span><span class="prop__v">' + sw + esc(raw) + '</span></div>';
 }).join('');
@@ -2482,7 +2620,7 @@ function openDetail(s) {
   stopSpeak(); curId = s.id;
   try { history.replaceState(null, '', baseUrl() + '#s=' + s.id); } catch (e) {}
   const locked = st.quiz, uz = usdzFor(s);
-  const attrs = 'src="' + esc(MODEL_BASE + s.glb) + '"' + (uz ? ' ios-src="' + esc(uz) + '" ar ar-modes="webxr scene-viewer quick-look"' : '');
+  const attrs = 'src="' + esc(MODEL_BASE + s.glb) + '" poster="' + esc(posterUrl(s)) + '" reveal="auto"' + (uz ? ' ios-src="' + esc(uz) + '" ar ar-modes="webxr scene-viewer quick-look"' : '');
   const pins = pinsHtml(s);
   dView.innerHTML = '<model-viewer id="dViewer" ' + attrs + ' alt="' + esc(s.name) + ' specimen" camera-controls touch-action="pan-y" ' + (st.rotate ? 'auto-rotate rotation-per-second="18deg" ' : '') + 'shadow-intensity="1" exposure="1.05" interaction-prompt="none">' + pins
     + (uz ? '<button slot="ar-button" class="btn btn--primary btn--sm" type="button">' + IC.phone + 'View in AR</button>' : '') + '</model-viewer>'
@@ -2496,7 +2634,7 @@ function openDetail(s) {
     + '<div class="dactions">' + act('share', 'share', 'Share') + act('qr', 'qr', 'QR') + act('listen', 'speaker', 'Listen') + act('print', 'printer', 'Print') + act('present', 'present', 'Present') + (st.edit ? act('addpin', 'pin', 'Add pin', ' btn--danger') : '') + '</div>'
     + '<div class="card qrbox" id="qrBox"></div>'
     + (locked ? '<button class="btn btn--primary btn--sm" id="reveal" type="button" style="align-self:flex-start">' + IC.eye + 'Reveal name</button>' : '')
-    + '<div class="props">' + props + '</div>';
+    + mohsHtml(s) + '<div class="props">' + props + '</div>';
   const idx = displayList.findIndex(x => x.id === s.id);
   $('dPrev').disabled = !(idx > 0); $('dNext').disabled = !(idx >= 0 && idx < displayList.length - 1);
   $('dCount').textContent = idx >= 0 ? (idx + 1) + ' of ' + displayList.length : '';
@@ -2546,7 +2684,7 @@ $('dClose').addEventListener('click', () => closeLayer($('detail')));
 /* ---------- print ---------- */
 function printSpecimen(s) {
   const url = baseUrl() + '#s=' + s.id, src = qrUrl(url);
-  const rows = propsFor(s).map(([k, l]) => s.props[k] ? '<div class="pc-row"><span class="pc-k">' + l + '</span><span>' + esc(s.props[k]) + '</span></div>' : '').join('');
+  const rows = propsFor(s).map(([k, l]) => propVal(s, k) ? '<div class="pc-row"><span class="pc-k">' + l + '</span><span>' + esc(propVal(s, k)) + '</span></div>' : '').join('');
   $('printArea').innerHTML = '<div class="pc-name">' + esc(s.name) + '</div><div class="pc-cat">' + CAT_LABELS[s.cat] + '  ·  No. ' + esc(s.no) + (kindOf(s) === 'mineral' ? '  ·  Mohs ' + esc(hdTxt(s)) : '') + '</div>' + rows
     + (src ? '<div class="pc-qr"><img src="' + src + '" alt="QR"><div>Scan to open in 3D and AR<br>' + esc(url) + '</div></div>' : '');
   print();
@@ -2557,7 +2695,7 @@ const view3d = $('view3d'); let presentId = null, idleT = 0, fc = null;
 const plist = () => displayList.length ? displayList : SPECIMENS;
 function pinfoReads(s) {
   const r = kindOf(s) === 'mineral'
-    ? [['Mohs', hdTxt(s)], ['Luster', metallic(s) ? 'Metallic' : 'Nonmetallic'], ['Streak', first(s.props.streak).split(' ')[0]]]
+    ? [['Mohs', hdTxt(s)], ['Luster', lusterKind(s)], ['Streak', first(s.props.streak).split(' ')[0]]].concat(s.props.density ? [['Density', s.props.density + ' g/cm\u00b3']] : [])
     : [['Type', CAT_LABELS[s.cat]], ['Texture', first(s.props.texture)], ['Grain', first(s.props.grain)]];
   return r.map(([k, v]) => '<div class="readout"><div class="readout__label">' + k + '</div><div class="readout__value">' + esc(v) + '</div></div>').join('');
 }
@@ -2565,9 +2703,9 @@ function stageModel(s) { view3d.innerHTML = ''; const mv = makeViewer(s, { rotat
 function renderPresent() {
   const s = byId(presentId); if (!s) return;
   stageModel(s);
-  $('pName').textContent = s.name; $('pSub').textContent = CAT_LABELS[s.cat] + (kindOf(s) === 'mineral' && s.hardness != null ? ' · Mohs ' + s.hardness : '');
+  $('pName').textContent = s.name; $('pSub').textContent = CAT_LABELS[s.cat] + (kindOf(s) === 'mineral' && hdTxt(s) ? ' · Mohs ' + hdTxt(s) : '');
   $('pinfoReads').innerHTML = pinfoReads(s);
-  $('pinfoBody').innerHTML = '<div class="card qrbox" id="pQr"></div>' + (s.desc ? '<p class="dinfo__desc">' + esc(s.desc) + '</p>' : '') + '<div class="props">' + propRows(s) + '</div>';
+  $('pinfoBody').innerHTML = '<div class="card qrbox" id="pQr"></div>' + (s.desc ? '<p class="dinfo__desc">' + esc(s.desc) + '</p>' : '') + mohsHtml(s) + '<div class="props">' + propRows(s) + '</div>';
   $('pinfoBody').scrollTop = 0; stopSpeak(); syncPTools();
   const l = plist(), i = l.findIndex(x => x.id === presentId);
   $('pPrev').disabled = !(i > 0); $('pNext').disabled = !(i >= 0 && i < l.length - 1);
@@ -2627,7 +2765,7 @@ function renderFlash() {
   stageModel(s); $('fcCount').textContent = 'Card ' + (f.pos + 1) + ' of ' + f.q.length;
   reveal.hidden = f.shown; got.hidden = !f.shown; later.hidden = !f.shown;
   if (!f.shown) { $('fcTitle').textContent = 'What is this specimen?'; $('fcSub').textContent = 'Turn it, then reveal the answer'; }
-  else { $('fcTitle').textContent = s.name; $('fcSub').textContent = kindOf(s) === 'mineral' ? ['Mohs ' + hdTxt(s), metallic(s) ? 'Metallic' : 'Nonmetallic', s.props.composition].filter(Boolean).join(' · ') : [CAT_LABELS[s.cat], first(s.props.texture), s.props.composition].filter(Boolean).join(' · '); }
+  else { $('fcTitle').textContent = s.name; $('fcSub').textContent = kindOf(s) === 'mineral' ? ['Mohs ' + hdTxt(s), lusterKind(s), brkKind(s), s.props.composition].filter(Boolean).join(' · ') : [CAT_LABELS[s.cat], first(s.props.texture), s.props.composition].filter(Boolean).join(' · '); }
 }
 $('fcReveal').addEventListener('click', () => { fc.shown = true; renderFlash(); });
 $('fcGot').addEventListener('click', () => { fc.pos++; fc.shown = false; renderFlash(); });
@@ -2661,14 +2799,15 @@ function renderEditor() {
     g.appendChild(field('GLB file', s.glb, v => { s.glb = v; }));
     g.appendChild(field('USDZ file', s.usdz, v => { s.usdz = v || null; }));
     g.appendChild(field('Description', s.desc, v => { s.desc = v; }));
-    propsFor(s).forEach(([k, l]) => g.appendChild(field(l, s.props[k], v => { s.props[k] = v; })));
+    propsFor(s).forEach(([k, l]) => g.appendChild(field(k === 'breakage' ? 'Breakage (Cleavage or Fracture)' : l, s.props[k], v => { s.props[k] = v; })));
+    if (kindOf(s) === 'mineral') g.appendChild(field('Cleavage or fracture detail', s.props.cleavage, v => { s.props.cleavage = v; }));
     if (kindOf(s) === 'mineral') g.appendChild(field('Streak swatch hex', s.props.streakHex, v => { s.props.streakHex = v; }));
     c.appendChild(h); c.appendChild(g); edList.appendChild(c);
   });
 }
 $('edAdd').addEventListener('click', () => {
   const n = SPECIMENS.length + 1;
-  SPECIMENS.push({ id: 'spec' + Date.now(), name: 'New specimen', cat: 'mineral', glb: '', usdz: null, hardness: 1, no: ('00' + n).slice(-3), desc: '', hotspots: [], props: { luster: '', hardness: '', streak: '', streakHex: '#eeeeee', cleavage: '', color: '', composition: '', distinguishing: '', uses: '' } });
+  SPECIMENS.push({ id: 'spec' + Date.now(), name: 'New specimen', cat: 'mineral', glb: '', usdz: null, hardness: 1, no: ('00' + n).slice(-3), desc: '', hotspots: [], props: { luster: '', hardness: '', density: '', streak: '', streakHex: '#eeeeee', breakage: '', cleavage: '', color: '', composition: '', distinguishing: '', uses: '' } });
   renderEditor(); refreshAll(); edList.lastChild.scrollIntoView({ behavior: reduced() ? 'auto' : 'smooth', block: 'center' });
 });
 $('edCopy').addEventListener('click', () => {
